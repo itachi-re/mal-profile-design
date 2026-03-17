@@ -1,0 +1,1065 @@
+/* ===== CYBERPUNK 2077 - NIGHT CITY MANGA LIST ===== */
+/* Designed for MyAnimeList.net profile customization */
+
+/* Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+/* ═══════════════════════════════════════════════════════════
+   CSS VARIABLES - NIGHT CITY COLOR PALETTE
+═══════════════════════════════════════════════════════════ */
+:root {
+  /* Core Neon Colors */
+  --neon-cyan: #00fff9;
+  --neon-magenta: #ff00ff;
+  --neon-yellow: #fcee0a;
+  --neon-red: #ff003c;
+  --neon-blue: #0066ff;
+  
+  /* Background Layers */
+  --night-deep: #0a0a12;
+  --night-mid: #12121f;
+  --night-surface: #1a1a2e;
+  --city-dark: #0d0d14;
+  
+  /* Glass Effects */
+  --glass-dark: rgba(10, 10, 18, 0.85);
+  --glass-medium: rgba(26, 26, 46, 0.7);
+  --glass-light: rgba(40, 40, 60, 0.5);
+  --glass-border: rgba(0, 255, 249, 0.15);
+  --glass-border-strong: rgba(0, 255, 249, 0.4);
+  
+  /* Glow Intensities */
+  --glow-cyan-soft: 0 0 10px rgba(0, 255, 249, 0.5), 0 0 20px rgba(0, 255, 249, 0.2);
+  --glow-cyan-strong: 0 0 10px rgba(0, 255, 249, 0.8), 0 0 30px rgba(0, 255, 249, 0.4), 0 0 50px rgba(0, 255, 249, 0.2);
+  --glow-magenta-soft: 0 0 10px rgba(255, 0, 255, 0.5), 0 0 20px rgba(255, 0, 255, 0.2);
+  --glow-magenta-strong: 0 0 10px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.4), 0 0 50px rgba(255, 0, 255, 0.2);
+  --glow-text: 0 0 5px currentColor, 0 0 10px currentColor;
+  
+  /* Text Colors */
+  --text-primary: #e0e0e0;
+  --text-secondary: #8a8a9a;
+  --text-muted: #5a5a6a;
+  
+  /* Typography */
+  --font-display: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL BACKGROUND - PARALLAX CITYSCAPE
+═══════════════════════════════════════════════════════════ */
+body {
+  background: var(--night-deep) !important;
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* FIXED: Removed grain animation from body — it was physically
+     translating the entire page by 1-2%, causing visible shaking.
+     Grain is now a purely visual overlay on html::before below. */
+}
+
+/* Multi-layer Parallax Cityscape Background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  background: 
+    /* Gradient Overlay */
+    linear-gradient(180deg, 
+      transparent 0%,
+      rgba(10, 10, 18, 0.3) 30%,
+      rgba(10, 10, 18, 0.6) 60%,
+      var(--night-deep) 100%
+    ),
+    /* City Skyline Layer 1 - Far Buildings */
+    url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1920&q=80') center bottom / cover no-repeat fixed;
+  opacity: 0.4;
+  filter: brightness(0.3) saturate(0.6) hue-rotate(200deg);
+}
+
+/* Mid-ground City Layer */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: 
+    radial-gradient(ellipse at 20% 80%, rgba(0, 255, 249, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 0, 255, 0.06) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 90%, rgba(255, 0, 60, 0.05) 0%, transparent 30%);
+  pointer-events: none;
+  animation: cityPulse 8s ease-in-out infinite;
+}
+
+@keyframes cityPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FILM GRAIN OVERLAY — Fixed to html, NOT body
+   This shakes a fixed texture layer only, never the page content.
+═══════════════════════════════════════════════════════════ */
+html::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  z-index: 99998;
+  pointer-events: none;
+  /* SVG noise pattern rendered as data URI — no external request */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  animation: grainShift 0.5s steps(8) infinite;
+  will-change: transform;
+}
+
+/* FIXED: translate is now on html::before (a non-content fixed overlay).
+   The page content never moves — only the invisible grain texture shifts. */
+@keyframes grainShift {
+  0%   { transform: translate(0, 0); }
+  12%  { transform: translate(-3%, -2%); }
+  25%  { transform: translate(2%, 3%); }
+  37%  { transform: translate(-4%, 1%); }
+  50%  { transform: translate(1%, -3%); }
+  62%  { transform: translate(-2%, 2%); }
+  75%  { transform: translate(3%, -1%); }
+  87%  { transform: translate(-1%, 3%); }
+  100% { transform: translate(2%, -2%); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RAIN EFFECT OVERLAY
+═══════════════════════════════════════════════════════════ */
+.header::before,
+.list-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url('https://media.giphy.com/media/3o7WTqUVS1qbDbzTxK/giphy.gif');
+  background-size: cover;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1000;
+  mix-blend-mode: screen;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CRT SCANLINES OVERLAY
+═══════════════════════════════════════════════════════════ */
+body > * {
+  position: relative;
+}
+
+/* FIXED: Changed from body > *::after to html::after so only one
+   scanline layer exists at z-index 99999 — no stacking artifacts. */
+html::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.18) 0px,
+    rgba(0, 0, 0, 0.18) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0.45;
+  /* Subtle vertical drift gives CRT roll feel without shaking content */
+  animation: scanlineRoll 12s linear infinite;
+  will-change: background-position;
+}
+
+@keyframes scanlineRoll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 4px; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLITCHING NEON HEADER
+═══════════════════════════════════════════════════════════ */
+.header {
+  padding: 0 !important;
+  padding-bottom: 320px !important;
+  position: relative;
+  background: transparent !important;
+  overflow: visible !important;
+}
+
+/* Header Container with Cityscape */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background: 
+    linear-gradient(180deg, 
+      transparent 0%,
+      rgba(0, 255, 249, 0.03) 20%,
+      rgba(255, 0, 255, 0.02) 40%,
+      transparent 60%,
+      var(--night-deep) 100%
+    ),
+    url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=1920&q=80') center top / cover no-repeat;
+  filter: brightness(0.25) saturate(1.5);
+  z-index: -1;
+  animation: parallaxShift 20s ease-in-out infinite;
+}
+
+@keyframes parallaxShift {
+  0%, 100% { background-position: center top; }
+  50% { background-position: center 10%; }
+}
+
+/* Main Title Glitch Effect */
+.header .header-menu .header-title {
+  position: relative;
+  font-family: var(--font-display) !important;
+  font-size: 2.8rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 8px !important;
+  text-transform: uppercase !important;
+  color: var(--neon-cyan) !important;
+  text-shadow: var(--glow-cyan-strong) !important;
+  animation: 
+    glitchText 3s infinite,
+    neonFlicker 4s infinite;
+}
+
+.header .header-menu .header-title::before,
+.header .header-menu .header-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
+.header .header-menu .header-title::before {
+  color: var(--neon-magenta);
+  text-shadow: var(--glow-magenta-strong);
+  animation: glitchBefore 3s infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translateX(-2px);
+}
+
+.header .header-menu .header-title::after {
+  color: var(--neon-cyan);
+  text-shadow: var(--glow-cyan-strong);
+  animation: glitchAfter 3s infinite;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  transform: translateX(2px);
+}
+
+@keyframes glitchText {
+  0%, 90%, 100% { transform: translateX(0); filter: hue-rotate(0deg); }
+  91% { transform: translateX(-3px) skewX(-1deg); filter: hue-rotate(10deg); }
+  92% { transform: translateX(3px) skewX(1deg); filter: hue-rotate(-10deg); }
+  93% { transform: translateX(-2px); filter: hue-rotate(5deg); }
+  94% { transform: translateX(2px) skewX(-0.5deg); }
+  95% { transform: translateX(0); filter: hue-rotate(0deg); }
+}
+
+@keyframes glitchBefore {
+  0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+  91% { transform: translateX(-4px); opacity: 1; }
+  92% { transform: translateX(4px); opacity: 0.8; }
+  93% { transform: translateX(-2px); opacity: 1; }
+  94% { transform: translateX(3px); opacity: 0.6; }
+  95% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes glitchAfter {
+  0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+  91% { transform: translateX(4px); opacity: 1; }
+  92% { transform: translateX(-4px); opacity: 0.8; }
+  93% { transform: translateX(3px); opacity: 1; }
+  94% { transform: translateX(-2px); opacity: 0.6; }
+  95% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: var(--glow-cyan-strong);
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.8;
+  }
+}
+
+/* Header Menu Links */
+.header .header-menu a,
+#header-menu-button {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: var(--text-primary) !important;
+  text-shadow: 0 0 5px rgba(0, 255, 249, 0.3) !important;
+  transition: all var(--transition-fast) !important;
+  position: relative;
+  padding: 8px 16px !important;
+}
+
+.header .header-menu a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+  transition: all var(--transition-smooth);
+  transform: translateX(-50%);
+}
+
+.header .header-menu a:hover::before {
+  width: 100%;
+}
+
+.header .header-menu a:hover {
+  color: var(--neon-cyan) !important;
+  text-shadow: var(--glow-cyan-strong) !important;
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FLOATING SIDE MENU - CYBERDECK STYLE
+═══════════════════════════════════════════════════════════ */
+.list-menu-float {
+  background: var(--glass-dark) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 0 16px 16px 0 !important;
+  box-shadow: 
+    var(--glow-cyan-soft),
+    inset 0 0 30px rgba(0, 255, 249, 0.03) !important;
+  padding: 12px 8px !important;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.list-menu-float::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    var(--neon-cyan) 0%, 
+    var(--neon-magenta) 50%, 
+    var(--neon-cyan) 100%
+  );
+  box-shadow: var(--glow-cyan-strong);
+  animation: borderGlow 3s linear infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.list-menu-float:hover {
+  border-color: var(--glass-border-strong) !important;
+  box-shadow: 
+    var(--glow-cyan-strong),
+    inset 0 0 50px rgba(0, 255, 249, 0.05) !important;
+}
+
+.list-menu-float .icon-menu {
+  background: transparent !important;
+  border-radius: 10px;
+  padding: 10px !important;
+  margin: 4px 0;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.list-menu-float .icon-menu::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(0, 255, 249, 0.1) 0%, 
+    rgba(255, 0, 255, 0.1) 100%
+  );
+  opacity: 0;
+  border-radius: inherit;
+  transition: opacity var(--transition-fast);
+}
+
+.list-menu-float .icon-menu:hover::after {
+  opacity: 1;
+}
+
+.list-menu-float .icon-menu:hover {
+  background: rgba(0, 255, 249, 0.1) !important;
+  transform: translateX(4px) scale(1.05);
+  box-shadow: var(--glow-cyan-soft);
+}
+
+.list-menu-float .icon-menu svg.icon {
+  fill: var(--text-secondary) !important;
+  transition: all var(--transition-fast);
+  filter: drop-shadow(0 0 2px rgba(0, 255, 249, 0.3));
+}
+
+.list-menu-float .icon-menu:hover svg.icon {
+  fill: var(--neon-cyan) !important;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 249, 0.8));
+  transform: scale(1.1);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATUS MENU - NEON TABS
+═══════════════════════════════════════════════════════════ */
+.status-menu-container {
+  background: var(--glass-dark) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px !important;
+  padding: 16px 20px !important;
+  margin-bottom: 20px !important;
+  box-shadow: var(--glow-cyan-soft) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-menu-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--neon-cyan) 50%, 
+    transparent 100%
+  );
+}
+
+.status-menu-container .status-menu {
+  position: relative;
+}
+
+.status-menu-container .status-menu::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--neon-magenta) 30%,
+    var(--neon-cyan) 70%, 
+    transparent 100%
+  );
+  opacity: 0.5;
+}
+
+.status-menu-container .status-button {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: var(--text-secondary) !important;
+  padding: 10px 16px !important;
+  border-radius: 8px !important;
+  transition: all var(--transition-fast) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-menu-container .status-button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+  transform: scaleX(0);
+  transition: transform var(--transition-smooth);
+}
+
+.status-menu-container .status-button:hover::before {
+  transform: scaleX(1);
+}
+
+.status-menu-container .status-button:hover {
+  color: var(--neon-cyan) !important;
+  background: rgba(0, 255, 249, 0.1) !important;
+  text-shadow: var(--glow-cyan-soft);
+  transform: translateY(-2px);
+}
+
+.status-menu-container .status-button.on {
+  color: var(--neon-cyan) !important;
+  background: rgba(0, 255, 249, 0.15) !important;
+  text-shadow: var(--glow-cyan-strong);
+  box-shadow: inset 0 0 20px rgba(0, 255, 249, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CATEGORY HEADER - HOLO DISPLAY
+═══════════════════════════════════════════════════════════ */
+.list-unit .list-status-title {
+  background: linear-gradient(135deg, 
+    var(--glass-dark) 0%, 
+    var(--glass-medium) 100%
+  ) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+  padding: 20px 24px !important;
+  margin-bottom: 16px !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--glow-magenta-soft) !important;
+}
+
+.list-unit .list-status-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(0, 255, 249, 0.03) 50%,
+    transparent 100%
+  );
+  animation: holographic 6s linear infinite;
+}
+
+@keyframes holographic {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.list-unit .list-status-title .text {
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 1.4rem !important;
+  letter-spacing: 4px !important;
+  text-transform: uppercase !important;
+  color: var(--neon-magenta) !important;
+  text-shadow: var(--glow-magenta-strong) !important;
+}
+
+.list-unit .list-status-title .stats {
+  font-family: var(--font-mono) !important;
+  color: var(--text-secondary) !important;
+}
+
+.list-unit .list-status-title .stats a {
+  color: var(--neon-cyan) !important;
+  text-shadow: var(--glow-cyan-soft) !important;
+  transition: all var(--transition-fast);
+}
+
+.list-unit .list-status-title .stats a:hover {
+  color: var(--neon-magenta) !important;
+  text-shadow: var(--glow-magenta-strong) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIST TABLE - REFLECTIVE SURFACES
+═══════════════════════════════════════════════════════════ */
+.list-block {
+  background: var(--glass-dark) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px !important;
+  padding: 12px !important;
+  box-shadow: 
+    var(--glow-cyan-soft),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Reflective Surface Effect */
+.list-block::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(180deg, 
+    rgba(255, 255, 255, 0.03) 0%, 
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.list-table,
+.list-container {
+  background: transparent !important;
+  border: none !important;
+}
+
+.list-table .list-table-header .header-title {
+  background: transparent !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+  padding: 12px 8px !important;
+}
+
+.list-table .list-table-header .header-title .link.sort,
+.list-table .list-table-header .header-title.image a {
+  font-family: var(--font-mono) !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 2px !important;
+  text-transform: uppercase !important;
+  color: var(--neon-cyan) !important;
+  text-shadow: var(--glow-cyan-soft) !important;
+  transition: all var(--transition-fast);
+}
+
+.list-table .list-table-header .header-title:hover .link.sort {
+  color: var(--neon-magenta) !important;
+  text-shadow: var(--glow-magenta-strong) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIST ROWS - NEON INTERACTIONS
+═══════════════════════════════════════════════════════════ */
+.list-table > tbody:nth-of-type(2n+1) {
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.list-table tbody[class*="list-item"] {
+  transition: all var(--transition-fast) !important;
+  border-radius: 8px;
+  position: relative;
+}
+
+.list-table tbody[class*="list-item"]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  border-radius: 0 2px 2px 0;
+}
+
+.list-table tbody[class*="list-item"]:hover::before {
+  opacity: 1;
+}
+
+.list-table tbody[class*="list-item"]:hover,
+.list-table tbody:nth-of-type(2n+1):hover {
+  background: linear-gradient(90deg, 
+    rgba(0, 255, 249, 0.08) 0%, 
+    rgba(255, 0, 255, 0.04) 100%
+  ) !important;
+  box-shadow: 
+    var(--glow-cyan-soft),
+    inset 0 0 30px rgba(0, 255, 249, 0.02) !important;
+  transform: translateX(4px);
+}
+
+/* Data Cells */
+.list-table .list-table-data .data {
+  font-family: var(--font-body) !important;
+  font-weight: 500 !important;
+  color: var(--text-primary) !important;
+  border: none !important;
+  padding: 10px 8px !important;
+  transition: all var(--transition-fast);
+}
+
+/* Anime Title Links */
+.list-table .list-table-data .data.title .link {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  color: var(--text-primary) !important;
+  transition: all var(--transition-fast);
+  position: relative;
+  display: inline-block;
+}
+
+.list-table .list-table-data .data.title .link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+  transition: width var(--transition-smooth);
+}
+
+.list-table .list-table-data .data.title .link:hover::after {
+  width: 100%;
+}
+
+.list-table .list-table-data .data.title .link:hover {
+  color: var(--neon-cyan) !important;
+  text-shadow: var(--glow-cyan-strong);
+  transform: translateX(4px);
+}
+
+/* Score & Numbers */
+.list-table .list-table-data .data.score,
+.list-table .list-table-data .data.chapter,
+.list-table .list-table-data .data.volume {
+  font-family: var(--font-mono) !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  color: var(--neon-yellow) !important;
+  text-shadow: 0 0 10px rgba(252, 238, 10, 0.5) !important;
+}
+
+.list-table .list-table-data .data.score:hover,
+.list-table .list-table-data .data.chapter:hover,
+.list-table .list-table-data .data.volume:hover {
+  text-shadow: 0 0 15px rgba(252, 238, 10, 0.8) !important;
+  transform: scale(1.1);
+}
+
+/* Type Tags */
+.list-table .list-table-data .data.type {
+  font-family: var(--font-mono) !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: var(--neon-cyan) !important;
+  background: rgba(0, 255, 249, 0.1) !important;
+  padding: 4px 8px !important;
+  border-radius: 4px !important;
+  border: 1px solid rgba(0, 255, 249, 0.2) !important;
+}
+
+/* Tags Section */
+.list-table .list-table-data .tags .edit {
+  font-family: var(--font-mono) !important;
+  font-size: 0.8rem !important;
+  color: var(--neon-magenta) !important;
+  text-shadow: var(--glow-magenta-soft) !important;
+  transition: all var(--transition-fast);
+}
+
+.list-table .list-table-data .tags .edit:hover {
+  color: var(--neon-cyan) !important;
+  text-shadow: var(--glow-cyan-strong) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATUS INDICATORS
+═══════════════════════════════════════════════════════════ */
+.list-unit .list-status-title .text::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--neon-cyan);
+  border-radius: 50%;
+  margin-right: 12px;
+  box-shadow: var(--glow-cyan-strong);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Different colors for different statuses */
+.list-unit.watching .list-status-title .text::before { background: var(--neon-cyan); }
+.list-unit.completed .list-status-title .text::before { background: var(--neon-magenta); }
+.list-unit.onhold .list-status-title .text::before { background: var(--neon-yellow); }
+.list-unit.dropped .list-status-title .text::before { background: var(--neon-red); }
+.list-unit.plantoread .list-status-title .text::before { background: var(--neon-blue); }
+
+/* ═══════════════════════════════════════════════════════════
+   STATS SECTION
+═══════════════════════════════════════════════════════════ */
+.list-unit .list-stats {
+  font-family: var(--font-mono) !important;
+  font-size: 0.85rem !important;
+  color: var(--text-secondary) !important;
+  text-shadow: 0 0 5px rgba(0, 255, 249, 0.2) !important;
+}
+
+.list-unit .list-stats a {
+  color: var(--neon-cyan) !important;
+  transition: all var(--transition-fast);
+}
+
+.list-unit .list-stats a:hover {
+  color: var(--neon-magenta) !important;
+  text-shadow: var(--glow-magenta-strong) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER - TERMINAL STYLE
+═══════════════════════════════════════════════════════════ */
+#footer-block {
+  background: var(--glass-dark) !important;
+  backdrop-filter: blur(20px) !important;
+  border-top: 1px solid var(--glass-border) !important;
+  padding: 30px 20px !important;
+  margin-top: 40px !important;
+  position: relative;
+}
+
+#footer-block::before {
+  content: 'NIGHT_CITY_TERMINAL v2.077';
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--neon-cyan);
+  opacity: 0.5;
+  letter-spacing: 2px;
+}
+
+#footer-block * {
+  font-family: var(--font-mono) !important;
+  color: var(--text-secondary) !important;
+}
+
+#footer-block a {
+  color: var(--neon-cyan) !important;
+  text-shadow: var(--glow-cyan-soft) !important;
+  transition: all var(--transition-fast);
+}
+
+#footer-block a:hover {
+  color: var(--neon-magenta) !important;
+  text-shadow: var(--glow-magenta-strong) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLLBAR - CYBER STYLE
+═══════════════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--night-deep);
+  border-left: 1px solid var(--glass-border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+  border-radius: 4px;
+  box-shadow: var(--glow-cyan-soft);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: var(--glow-cyan-strong);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+═══════════════════════════════════════════════════════════ */
+@media screen and (max-width: 1024px) {
+  .header {
+    padding-bottom: 250px !important;
+  }
+  
+  .header .header-menu .header-title {
+    font-size: 2rem !important;
+    letter-spacing: 4px !important;
+  }
+  
+  .status-menu-container .status-button {
+    padding: 8px 12px !important;
+    font-size: 0.75rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding-bottom: 200px !important;
+  }
+  
+  .header .header-menu .header-title {
+    font-size: 1.5rem !important;
+    letter-spacing: 2px !important;
+  }
+  
+  .list-unit .list-status-title .text {
+    font-size: 1.1rem !important;
+    letter-spacing: 2px !important;
+  }
+  
+  .status-menu-container {
+    padding: 12px 16px !important;
+  }
+  
+  .list-menu-float {
+    border-radius: 0 12px 12px 0 !important;
+    padding: 8px 6px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding-bottom: 160px !important;
+  }
+  
+  .header .header-menu .header-title {
+    font-size: 1.2rem !important;
+    letter-spacing: 1px !important;
+  }
+  
+  .list-block {
+    padding: 8px !important;
+    border-radius: 12px !important;
+  }
+  
+  .list-table .list-table-data .data.title .link {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ANIMATED NEON LINE DECORATIONS
+═══════════════════════════════════════════════════════════ */
+.status-menu-container::after,
+.list-block::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    var(--neon-cyan) 20%,
+    var(--neon-magenta) 50%,
+    var(--neon-cyan) 80%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE ENHANCEMENTS
+═══════════════════════════════════════════════════════════ */
+.list-table .list-table-data .data.image img {
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 6px !important;
+  transition: all var(--transition-smooth) !important;
+  filter: saturate(0.9) contrast(1.1);
+}
+
+.list-table .list-table-data .data.image:hover img {
+  border-color: var(--neon-cyan) !important;
+  box-shadow: var(--glow-cyan-strong) !important;
+  transform: scale(1.05);
+  filter: saturate(1.1) contrast(1.2);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COVER IMAGE AREA
+═══════════════════════════════════════════════════════════ */
+.cover-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ADDITIONAL HOLO EFFECTS
+═══════════════════════════════════════════════════════════ */
+@keyframes holoShift {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(15deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+.list-block:hover {
+  animation: holoShift 4s ease-in-out;
+}
+
+/* Selection Styling */
+::selection {
+  background: var(--neon-magenta) !important;
+  color: var(--night-deep) !important;
+  text-shadow: none !important;
+}
+
+/* Focus States for Accessibility */
+a:focus,
+button:focus {
+  outline: 2px solid var(--neon-cyan) !important;
+  outline-offset: 2px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PRINT STYLES
+═══════════════════════════════════════════════════════════ */
+@media print {
+  body::before,
+  body::after,
+  html::before,
+  html::after,
+  .header::before,
+  .list-block::before,
+  .status-menu-container::before {
+    display: none !important;
+  }
+  
+  * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
