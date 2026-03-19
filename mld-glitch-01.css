@@ -1,149 +1,302 @@
 /* ═══════════════════════════════════════════════════════════════════
-   CYBERPUNK 2077 - NIGHT CITY LIST
-   Pure black + neon accents theme
-═══════════════════════════════════════════════════════════════════ */
+ *  CYBERPUNK 2077 — NIGHT CITY LIST  ·  v2.0 ENHANCED
+ *  Rain · Glitch · Curly Accents · No MAL Default Colors
+ ═ *══════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Satisfy&family=Dancing+Script:wght@600;700&display=swap');
 
+/* ─── CSS VARIABLES ─────────────────────────────────────────────── */
 :root {
-  --bg-pure: #000000;
-  --bg-surface: #0a0a0a;
-  --bg-elevated: #111111;
-  
-  --neon-cyan: #00fff9;
+  --bg-pure:    #000000;
+  --bg-surface: #080808;
+  --bg-elevated:#111111;
+
+  --neon-cyan:   #00fff9;
   --neon-yellow: #fcee0a;
-  --neon-red: #ff003c;
+  --neon-red:    #ff003c;
   --neon-orange: #ff6b00;
-  --neon-white: #ffffff;
-  
-  --text-main: #e0e0e0;
-  --text-dim: #666666;
-  --text-muted: #333333;
-  
-  --glow-cyan: 0 0 5px #00fff9, 0 0 10px #00fff9, 0 0 20px #00fff9;
-  --glow-red: 0 0 5px #ff003c, 0 0 10px #ff003c, 0 0 20px #ff003c;
-  --glow-yellow: 0 0 5px #fcee0a, 0 0 10px #fcee0a;
-  
+  --neon-pink:   #ff00aa;
+  --neon-white:  #ffffff;
+
+  --text-main:   #dde0e6;
+  --text-dim:    #555566;
+  --text-muted:  #222233;
+
+  --glow-cyan:   0 0 4px #00fff9, 0 0 12px #00fff9, 0 0 28px rgba(0,255,249,.4);
+  --glow-red:    0 0 4px #ff003c, 0 0 12px #ff003c, 0 0 28px rgba(255,0,60,.4);
+  --glow-yellow: 0 0 4px #fcee0a, 0 0 14px rgba(252,238,10,.6);
+  --glow-pink:   0 0 4px #ff00aa, 0 0 14px rgba(255,0,170,.5);
+  --glow-orange: 0 0 4px #ff6b00, 0 0 12px rgba(255,107,0,.5);
+
   --font-display: 'Orbitron', sans-serif;
-  --font-body: 'Rajdhani', sans-serif;
-  --font-mono: 'Share Tech Mono', monospace;
+  --font-body:    'Rajdhani', sans-serif;
+  --font-mono:    'Share Tech Mono', monospace;
+  --font-curly:   'Dancing Script', cursive;
+  --font-accent:  'Satisfy', cursive;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   BASE - PURE BLACK
-═══════════════════════════════════════════════════════════════════ */
+ *  BASE
+ ═ *══════════════════════════════════════════════════════════════════ */
 html, body {
   background: var(--bg-pure) !important;
   color: var(--text-main) !important;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   RAIN EFFECT
-═══════════════════════════════════════════════════════════════════ */
+ *  ██████╗  █████╗ ██╗███╗   ██╗
+ *  ██╔══██╗██╔══██╗██║████╗  ██║
+ *  ██████╔╝███████║██║██╔██╗ ██║
+ *  ██╔══██╗██╔══██║██║██║╚██╗██║
+ *  ██║  ██║██║  ██║██║██║ ╚████║
+ *  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
+ *  RAIN SYSTEM — 5 independent diagonal layers
+ ═ *══════════════════════════════════════════════════════════════════ */
+
+/* Layer 1: Fast fine rain */
 body::before {
   content: '';
   position: fixed;
-  top: 0;
+  top: -20%;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99990;
+  width: 120%;
+  height: 140%;
+  z-index: 99980;
   pointer-events: none;
-  background: 
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 15px,
-      rgba(255, 255, 255, 0.02) 15px,
-      rgba(255, 255, 255, 0.02) 16px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 25px,
-      rgba(255, 255, 255, 0.015) 25px,
-      rgba(255, 255, 255, 0.015) 26px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 40px,
-      rgba(255, 255, 255, 0.01) 40px,
-      rgba(255, 255, 255, 0.01) 41px
-    );
-  background-size: 100% 100%, 100% 100%, 100% 100%;
-  animation: rainFall 0.5s linear infinite;
+  background-image:
+  repeating-linear-gradient(
+    -75deg,
+    transparent 0px,
+    transparent 18px,
+    rgba(0, 255, 249, 0.055) 18px,
+                            rgba(0, 255, 249, 0.055) 19px
+  ),
+  repeating-linear-gradient(
+    -75deg,
+    transparent 0px,
+    transparent 42px,
+    rgba(255, 255, 255, 0.025) 42px,
+                            rgba(255, 255, 255, 0.025) 43px
+  );
+  animation: rainLayer1 0.35s linear infinite;
+  transform: rotate(0deg);
 }
 
-@keyframes rainFall {
-  0% { background-position: 0 0, 30px 0, 60px 0; }
-  100% { background-position: 0 30px, 30px 30px, 60px 30px; }
+@keyframes rainLayer1 {
+  0%   { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(28px) translateX(-8px); }
 }
 
-/* Vertical rain lines */
+/* Layer 2: Slower heavy streaks */
 body::after {
   content: '';
   position: fixed;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 200%;
-  z-index: 99989;
+  top: -30%;
+  left: -10%;
+  width: 130%;
+  height: 160%;
+  z-index: 99979;
   pointer-events: none;
-  background: 
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 80px,
-      rgba(0, 255, 249, 0.03) 80px,
-      rgba(0, 255, 249, 0.03) 81px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent 0px,
-      transparent 160px,
-      rgba(255, 255, 255, 0.02) 160px,
-      rgba(255, 255, 255, 0.02) 161px
-    );
-  animation: rainVertical 0.8s linear infinite;
+  background-image:
+  repeating-linear-gradient(
+    -78deg,
+    transparent 0px,
+    transparent 90px,
+    rgba(0, 255, 249, 0.04) 90px,
+                            rgba(0, 255, 249, 0.04) 92px
+  ),
+  repeating-linear-gradient(
+    -78deg,
+    transparent 0px,
+    transparent 150px,
+    rgba(255, 0, 170, 0.025) 150px,
+                            rgba(255, 0, 170, 0.025) 151px
+  ),
+  repeating-linear-gradient(
+    -78deg,
+    transparent 0px,
+    transparent 240px,
+    rgba(255, 255, 255, 0.018) 240px,
+                            rgba(255, 255, 255, 0.018) 241px
+  );
+  animation: rainLayer2 0.65s linear infinite;
 }
 
-@keyframes rainVertical {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(20%); }
+@keyframes rainLayer2 {
+  0%   { transform: translateY(0) translateX(0); }
+  100% { transform: translateY(46px) translateX(-12px); }
 }
 
-/* ═══════════════════════════════════════════════════════════════════
-   SCANLINES
-═══════════════════════════════════════════════════════════════════ */
-html::after {
+/* Layer 3: Scanlines / CRT overlay */
+html::before {
   content: '';
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 99995;
   pointer-events: none;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.2) 0px,
-    rgba(0, 0, 0, 0.2) 1px,
-    transparent 1px,
-    transparent 2px
+    rgba(0, 0, 0, 0.22) 0px,
+                                        rgba(0, 0, 0, 0.22) 1px,
+                                        transparent 1px,
+                                        transparent 3px
   );
-  opacity: 0.3;
+  opacity: 0.35;
+  animation: scanlineDrift 8s linear infinite;
+}
+
+@keyframes scanlineDrift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 60px; }
+}
+
+/* Layer 4: Rain splatter drops (radial dots that scroll down) */
+html::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 300%;
+  z-index: 99978;
+  pointer-events: none;
+  background-image:
+  radial-gradient(circle 1px at 15%  8%, rgba(0,255,249,.18) 0%, transparent 100%),
+  radial-gradient(circle 1px at 37% 23%, rgba(255,255,255,.10) 0%, transparent 100%),
+  radial-gradient(circle 1px at 62% 41%, rgba(0,255,249,.14) 0%, transparent 100%),
+  radial-gradient(circle 1px at 80% 55%, rgba(255,255,255,.08) 0%, transparent 100%),
+  radial-gradient(circle 1px at 28% 70%, rgba(0,255,249,.12) 0%, transparent 100%),
+  radial-gradient(circle 1px at 50% 85%, rgba(255,0,170,.10) 0%, transparent 100%),
+  radial-gradient(circle 1px at  7% 90%, rgba(255,255,255,.08) 0%, transparent 100%),
+  radial-gradient(circle 1px at 92% 12%, rgba(0,255,249,.15) 0%, transparent 100%);
+  background-size: 100% 33.3%;
+  animation: dropsFall 2.2s linear infinite;
+}
+
+@keyframes dropsFall {
+  0%   { transform: translateY(-33.3%); }
+  100% { transform: translateY(0%); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   HEADER
-═══════════════════════════════════════════════════════════════════ */
+ *  ██████╗ ██╗     ██╗████████╗ ██████╗██╗  ██╗
+ * ██╔════╝ ██║     ██║╚══██╔══╝██╔════╝██║  ██║
+ * ██║  ███╗██║     ██║   ██║   ██║     ███████║
+ * ██║   ██║██║     ██║   ██║   ██║     ██╔══██║
+ * ╚██████╔╝███████╗██║   ██║   ╚██████╗██║  ██║
+ *  ╚═════╝ ╚══════╝╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝
+ *  GLITCH SYSTEM
+ ═ *══════════════════════════════════════════════════════════════════ */
+
+/* Global RGB-split glitch flicker */
+@keyframes glitchGlobal {
+  0%,  89%, 100% { filter: none; }
+  90%            { filter: hue-rotate(10deg) brightness(1.05); }
+  91%            { filter: none; }
+  92%            { clip-path: inset(20% 0 60% 0); transform: translateX(-4px); filter: hue-rotate(-30deg) saturate(3); }
+  93%            { clip-path: none; transform: none; filter: none; }
+  95%            { filter: brightness(1.1) contrast(1.2); }
+  96%            { transform: translateX(3px); filter: hue-rotate(90deg); }
+  97%            { transform: translateX(-3px); }
+  98%            { transform: none; filter: none; }
+  99%            { filter: brightness(0.85); }
+}
+
+/* Header glitch — intensive */
+@keyframes glitchHeader {
+  0%, 88%, 100% {
+    text-shadow: var(--glow-cyan);
+    transform: none;
+  }
+  89% {
+    text-shadow:
+    -3px 0 var(--neon-red),
+    3px 0 var(--neon-cyan);
+    transform: translateX(-2px);
+  }
+  90% {
+    text-shadow:
+    3px 0 var(--neon-pink),
+    -3px 0 var(--neon-cyan);
+    transform: translateX(3px);
+    letter-spacing: 6px;
+  }
+  91% {
+    text-shadow: var(--glow-cyan);
+    transform: none;
+    letter-spacing: 4px;
+  }
+  93% {
+    text-shadow:
+    2px 0 var(--neon-red),
+    -2px 0 var(--neon-yellow);
+    transform: skewX(-5deg);
+  }
+  94% { transform: skewX(3deg); }
+  95% {
+    text-shadow: var(--glow-cyan);
+    transform: none;
+  }
+}
+
+/* Row hover glitch */
+@keyframes rowGlitch {
+  0%, 100% { transform: none; filter: none; }
+  30%       { transform: translateX(-2px); filter: hue-rotate(40deg); }
+  60%       { transform: translateX(2px);  filter: hue-rotate(-40deg); }
+  90%       { transform: none; filter: none; }
+}
+
+/* Neon flicker */
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.85;
+  }
+  22% {
+    opacity: 0.6;
+  }
+}
+
+/* Category title glitch */
+@keyframes categoryGlitch {
+  0%, 94%, 100% {
+    text-shadow: var(--glow-cyan);
+    transform: none;
+  }
+  95% {
+    text-shadow: 2px 0 var(--neon-red), -2px 0 var(--neon-cyan);
+    transform: translateX(-2px);
+  }
+  96% {
+    text-shadow: -2px 0 var(--neon-pink), 2px 0 var(--neon-yellow);
+    transform: translateX(2px);
+  }
+  97% {
+    text-shadow: var(--glow-cyan);
+    transform: none;
+  }
+}
+
+/* Border glow pulse */
+@keyframes borderPulse {
+  0%, 100% { box-shadow: var(--glow-cyan); }
+  50%       { box-shadow: 0 0 6px #00fff9, 0 0 18px #00fff9, 0 0 40px rgba(0,255,249,.35); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  HEADER
+ ═ *══════════════════════════════════════════════════════════════════ */
 #header-small,
-header {
+header,
+.header {
   background: var(--bg-pure) !important;
   border-bottom: 2px solid var(--neon-cyan) !important;
   box-shadow: var(--glow-cyan) !important;
+  animation: borderPulse 4s ease-in-out infinite !important;
 }
 
 #header-small h1,
@@ -153,6 +306,7 @@ header {
   color: var(--neon-cyan) !important;
   text-shadow: var(--glow-cyan) !important;
   letter-spacing: 4px !important;
+  animation: glitchHeader 6s infinite !important;
 }
 
 .header a,
@@ -160,18 +314,25 @@ header {
 .header-menu a {
   font-family: var(--font-body) !important;
   color: var(--text-main) !important;
-  transition: color 0.2s !important;
+  transition: all 0.2s ease !important;
 }
 
 .header a:hover,
 #header-menu-button:hover {
-  color: var(--neon-cyan) !important;
-  text-shadow: var(--glow-cyan) !important;
+color: var(--neon-cyan) !important;
+text-shadow: var(--glow-cyan) !important;
+}
+
+/* ─── Profile / avatar area ─── */
+.profile-header,
+.user-profile-header {
+  background: var(--bg-surface) !important;
+  border: 1px solid rgba(0,255,249,.3) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   FLOATING MENU
-═══════════════════════════════════════════════════════════════════ */
+ *  FLOATING MENU
+ ═ *══════════════════════════════════════════════════════════════════ */
 .list-menu-float,
 #list-menu-float,
 .floating-menu {
@@ -182,10 +343,12 @@ header {
 
 .icon-menu {
   background: transparent !important;
+  transition: all 0.2s ease !important;
 }
 
 .icon-menu:hover {
-  background: rgba(0, 255, 249, 0.1) !important;
+  background: rgba(0, 255, 249, 0.12) !important;
+  box-shadow: var(--glow-cyan) !important;
 }
 
 .icon-menu svg {
@@ -194,56 +357,60 @@ header {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   STATUS MENU / TABS
-═══════════════════════════════════════════════════════════════════ */
+ *  STATUS MENU / TABS
+ ═ *══════════════════════════════════════════════════════════════════ */
 .status-menu,
 .status-menu-container,
 .list-navigation,
 #status-menu {
-  background: var(--bg-surface) !important;
-  border: 1px solid var(--neon-cyan) !important;
+background: var(--bg-surface) !important;
+border: 1px solid rgba(0,255,249,.35) !important;
+font-family: var(--font-body) !important;
 }
 
 .status-menu a,
 .status-button,
 #status-menu a {
-  font-family: var(--font-body) !important;
-  color: var(--text-main) !important;
-  transition: all 0.2s !important;
+font-family: var(--font-body) !important;
+color: var(--text-main) !important;
+transition: all 0.25s !important;
 }
 
 .status-menu a:hover,
 .status-button:hover {
   color: var(--neon-cyan) !important;
   text-shadow: var(--glow-cyan) !important;
+  background: rgba(0,255,249,.07) !important;
 }
 
 .status-menu a.active,
 .status-button.on,
 .status-menu .on {
   color: var(--neon-cyan) !important;
-  background: rgba(0, 255, 249, 0.15) !important;
+  background: rgba(0, 255, 249, 0.12) !important;
   text-shadow: var(--glow-cyan) !important;
+  border-bottom: 2px solid var(--neon-cyan) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   LIST BLOCK
-═══════════════════════════════════════════════════════════════════ */
+ *  LIST BLOCK
+ ═ *══════════════════════════════════════════════════════════════════ */
 .list-block,
 #list-block,
 .anime-list,
 .manga-list {
   background: var(--bg-surface) !important;
-  border: 1px solid var(--neon-cyan) !important;
+  border: 1px solid rgba(0,255,249,.25) !important;
   box-shadow: var(--glow-cyan) !important;
+  animation: borderPulse 6s ease-in-out infinite !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   TABLE HEADERS
-═══════════════════════════════════════════════════════════════════ */
+ *  TABLE HEADERS
+ ═ *══════════════════════════════════════════════════════════════════ */
 .header-title {
   background: var(--bg-pure) !important;
-  border-bottom: 1px solid var(--neon-cyan) !important;
+  border-bottom: 1px solid rgba(0,255,249,.4) !important;
 }
 
 .header-title a,
@@ -251,19 +418,21 @@ header {
   font-family: var(--font-mono) !important;
   color: var(--neon-cyan) !important;
   text-shadow: var(--glow-cyan) !important;
-  font-size: 0.75rem !important;
-  letter-spacing: 1px !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
+  transition: all 0.2s !important;
 }
 
 .header-title a:hover {
   color: var(--neon-white) !important;
-  text-shadow: 0 0 10px var(--neon-white) !important;
+  text-shadow: 0 0 12px var(--neon-white) !important;
+  letter-spacing: 2px !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   TABLE ROWS
-═══════════════════════════════════════════════════════════════════ */
+ *  TABLE ROWS
+ ═ *══════════════════════════════════════════════════════════════════ */
 .table,
 .list-table,
 .table > tbody,
@@ -274,38 +443,41 @@ header {
 .table tr,
 .list-table tr,
 tbody tr {
-  border-bottom: 1px solid #1a1a1a !important;
-  transition: background 0.2s !important;
+  border-bottom: 1px solid #0d0d1a !important;
+  transition: background 0.2s, box-shadow 0.2s !important;
+  position: relative;
 }
 
 .table tr:nth-child(even),
 .list-table tr:nth-child(even) {
-  background: rgba(0, 255, 249, 0.03) !important;
+  background: rgba(0, 255, 249, 0.022) !important;
 }
 
 .table tr:hover,
 .list-table tr:hover {
-  background: rgba(0, 255, 249, 0.08) !important;
+  background: rgba(0, 255, 249, 0.07) !important;
+  box-shadow: inset 0 0 20px rgba(0,255,249,.04) !important;
+  animation: rowGlitch 0.25s ease forwards !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   TABLE CELLS
-═══════════════════════════════════════════════════════════════════ */
-.td1,
-td {
+ *  TABLE CELLS
+ ═ *══════════════════════════════════════════════════════════════════ */
+.td1, td {
   font-family: var(--font-body) !important;
   color: var(--text-main) !important;
   border: none !important;
   padding: 10px 8px !important;
 }
 
-/* Title */
+/* Title links — curly hover */
 .td1 a,
 td.title a,
 .title .link {
   font-family: var(--font-body) !important;
   color: var(--text-main) !important;
   font-weight: 600 !important;
+  transition: all 0.25s !important;
 }
 
 .td1 a:hover,
@@ -313,6 +485,9 @@ td.title a:hover,
 .title .link:hover {
   color: var(--neon-cyan) !important;
   text-shadow: var(--glow-cyan) !important;
+  font-family: var(--font-curly) !important;
+  font-size: 1.05em !important;
+  letter-spacing: 0.5px !important;
 }
 
 /* Score */
@@ -323,9 +498,10 @@ td.score,
   color: var(--neon-yellow) !important;
   text-shadow: var(--glow-yellow) !important;
   font-weight: bold !important;
+  animation: neonFlicker 7s infinite !important;
 }
 
-/* Numbers */
+/* Episodes / Chapters */
 .td3,
 td.chapters,
 td.episodes,
@@ -335,73 +511,301 @@ td.volumes,
 .volumes {
   font-family: var(--font-mono) !important;
   color: var(--neon-orange) !important;
+  text-shadow: var(--glow-orange) !important;
 }
 
-/* Type */
+/* Type badge */
 .td4,
 td.type,
 .type {
   font-family: var(--font-mono) !important;
-  font-size: 0.65rem !important;
+  font-size: 0.62rem !important;
   color: var(--neon-cyan) !important;
-  background: rgba(0, 255, 249, 0.1) !important;
+  background: rgba(0, 255, 249, 0.08) !important;
   padding: 2px 6px !important;
-  border: 1px solid rgba(0, 255, 249, 0.3) !important;
+  border: 1px solid rgba(0, 255, 249, 0.28) !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   CATEGORY HEADERS
-═══════════════════════════════════════════════════════════════════ */
+ *  CATEGORY / STATUS SECTION TITLES
+ *  — uses curly font for a cyberpunk × cursive contrast —
+ ═ *══════════════════════════════════════════════════════════════════ */
 .list-status-title,
 .category-title {
-  background: var(--bg-surface) !important;
-  border: 1px solid var(--neon-cyan) !important;
+  background: linear-gradient(90deg, rgba(0,255,249,.08) 0%, transparent 100%) !important;
+  border: 1px solid rgba(0,255,249,.3) !important;
   border-left: 3px solid var(--neon-cyan) !important;
-  padding: 12px 16px !important;
+  padding: 12px 18px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative sweep behind category title */
+.list-status-title::before,
+.category-title::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,255,249,.06), transparent);
+  animation: sweepShine 5s ease-in-out infinite;
+}
+
+@keyframes sweepShine {
+  0%   { left: -100%; }
+  50%  { left: 120%; }
+  100% { left: 120%; }
 }
 
 .list-status-title .text,
 .category-title .text {
-  font-family: var(--font-display) !important;
+  font-family: var(--font-curly) !important;   /* ← curly font here */
   color: var(--neon-cyan) !important;
   text-shadow: var(--glow-cyan) !important;
-  font-size: 1rem !important;
-  letter-spacing: 3px !important;
-  text-transform: uppercase !important;
+  font-size: 1.25rem !important;
+  letter-spacing: 1px !important;
+  text-transform: none !important;
+  animation: categoryGlitch 8s infinite !important;
 }
 
 .list-stats,
 .stats {
   font-family: var(--font-mono) !important;
   color: var(--text-dim) !important;
-  font-size: 0.75rem !important;
+  font-size: 0.72rem !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   IMAGES
-═══════════════════════════════════════════════════════════════════ */
+ *  IMAGES
+ ═ *══════════════════════════════════════════════════════════════════ */
 .td1 img,
 td.image img,
 .image img {
-  border: 1px solid #222 !important;
+  border: 1px solid #1a1a2e !important;
   border-radius: 2px !important;
-  transition: all 0.2s !important;
+  transition: all 0.3s ease !important;
+  filter: saturate(0.85) contrast(1.05) !important;
 }
 
 .td1 img:hover,
 td.image img:hover {
   border-color: var(--neon-cyan) !important;
   box-shadow: var(--glow-cyan) !important;
+  filter: saturate(1.2) contrast(1.1) !important;
+  transform: scale(1.04) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════════════════ */
+ *  ██████╗ ███████╗███╗   ███╗ ██████╗ ██╗   ██╗███████╗
+ *  ██╔══██╗██╔════╝████╗ ████║██╔═══██╗██║   ██║██╔════╝
+ *  ██████╔╝█████╗  ██╔████╔██║██║   ██║██║   ██║█████╗
+ *  ██╔══██╗██╔══╝  ██║╚██╔╝██║██║   ██║╚██╗ ██╔╝██╔══╝
+ *  ██║  ██║███████╗██║ ╚═╝ ██║╚██████╔╝ ╚████╔╝ ███████╗
+ *  ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝   ╚═══╝  ╚══════╝
+ *  STRIP ALL MAL DEFAULT COLORS
+ *  — watching (blue/teal), completed (green), on-hold (yellow),
+ *    dropped (red), plan-to-watch (grey) left-side bars —
+ ═ *══════════════════════════════════════════════════════════════════ */
+
+/* ─── Status bar strips (left-border colored columns) ─── */
+.td-status,
+td.status,
+.list-status,
+[class*="status"],
+.completed td.status,
+.watching  td.status,
+.on_hold   td.status,
+.plan_to_watch td.status,
+.dropped   td.status {
+  background: transparent !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
+  color: transparent !important;
+}
+
+/* ─── Row-level status classes — reset all left borders ─── */
+tr.completed,
+tr.watching,
+tr.on_hold,
+tr.plan_to_watch,
+tr.dropped,
+tr[class*="status-completed"],
+tr[class*="status-watching"],
+tr[class*="status-on"],
+tr[class*="status-plan"],
+tr[class*="status-dropped"] {
+  border-left: none !important;
+}
+
+/* ─── Inline color styles MAL injects ─── */
+/* Blue (watching) */
+[style*="color:#2e51a2"],
+[style*="color: #2e51a2"],
+[style*="color:#2E51A2"],
+[style*="color:#2db039"],
+[style*="color: #2db039"],
+[style*="color:#26448f"],
+[style*="color:#669900"],
+[style*="color:#c3a800"],
+[style*="color: #c3a800"],
+[style*="color: #669900"],
+[style*="background:#2e51a2"],
+[style*="background:#2db039"],
+[style*="background:#26448f"] {
+  color: var(--neon-cyan) !important;
+  background: transparent !important;
+}
+
+[style*="border-color:#2e51a2"],
+[style*="border-color:#2db039"],
+[style*="border-left-color:#2e51a2"],
+[style*="border-left-color:#2db039"] {
+  border-color: var(--neon-cyan) !important;
+}
+
+/* ─── MAL status colored dots / icons ─── */
+.status-watching,
+.status-completed,
+.status-dropped,
+.status-on_hold,
+.status-plantowatch {
+  color: var(--neon-cyan) !important;
+  background: transparent !important;
+  border-color: var(--neon-cyan) !important;
+  filter: none !important;
+}
+
+/* ─── Green / teal / blue anywhere ─── */
+[style*="#00b4d8"],
+[style*="#0077b6"],
+[style*="#0096c7"],
+[style*="#2d86c1"],
+[style*="#4CAF50"],
+[style*="#388E3C"],
+[style*="#1565C0"],
+[style*="#1976D2"] {
+  color: var(--neon-cyan) !important;
+  background: transparent !important;
+}
+
+/* ─── Progress bar overrides ─── */
+.progress-bar,
+.progress-bar-completed,
+.progress-bar-watching,
+.progress-bar-dropped {
+  background: var(--neon-cyan) !important;
+  box-shadow: var(--glow-cyan) !important;
+  border-radius: 0 !important;
+}
+
+.progress-bar-bg,
+.progress-bar-track {
+  background: rgba(0,255,249,.12) !important;
+  border: 1px solid rgba(0,255,249,.25) !important;
+}
+
+/* ─── Stats numbers (completed count etc.) ─── */
+.stat-completed,
+.count-completed { color: var(--neon-cyan) !important; }
+.stat-watching,
+.count-watching   { color: var(--neon-yellow) !important; }
+.stat-dropped,
+.count-dropped    { color: var(--neon-red) !important; }
+.stat-on_hold,
+.count-on_hold    { color: var(--neon-orange) !important; }
+.stat-plantowatch,
+.count-plantowatch { color: var(--text-dim) !important; }
+
+/* ─── List summary table (the colored row at bottom) ─── */
+.list-stats,
+.stats-data,
+.user-stats-watching  { background: transparent !important; color: var(--neon-yellow) !important; }
+.user-stats-completed { background: transparent !important; color: var(--neon-cyan)   !important; }
+.user-stats-dropped   { background: transparent !important; color: var(--neon-red)    !important; }
+.user-stats-onhold    { background: transparent !important; color: var(--neon-orange) !important; }
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  GLOBAL LINK OVERRIDES
+ ═ *══════════════════════════════════════════════════════════════════ */
+a {
+  color: var(--text-main) !important;
+  transition: color 0.2s, text-shadow 0.2s !important;
+}
+
+a:hover {
+  color: var(--neon-cyan) !important;
+  text-shadow: var(--glow-cyan) !important;
+}
+
+a[style*="blue"],
+a[style*="green"],
+a[style*="#2E51A2"],
+a[style*="#2b06ac"],
+a[style*="#586dd4"],
+a[style*="#1a1ac8"],
+a[style*="#2e51a2"],
+a[style*="#2db039"] {
+  color: var(--text-main) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  BUTTONS & INPUTS
+ ═ *══════════════════════════════════════════════════════════════════ */
+button,
+input[type="submit"],
+input[type="button"],
+.btn,
+.button {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--neon-cyan) !important;
+  color: var(--neon-cyan) !important;
+  font-family: var(--font-body) !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.btn:hover {
+  background: rgba(0, 255, 249, 0.1) !important;
+  box-shadow: var(--glow-cyan) !important;
+  transform: translateY(-1px) !important;
+}
+
+input[type="text"],
+input[type="search"],
+select,
+textarea {
+  background: var(--bg-surface) !important;
+  border: 1px solid rgba(0,255,249,.3) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-body) !important;
+  outline: none !important;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--neon-cyan) !important;
+  box-shadow: var(--glow-cyan) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  FOOTER
+ ═ *══════════════════════════════════════════════════════════════════ */
 #footer,
 footer {
   background: var(--bg-pure) !important;
-  border-top: 1px solid var(--neon-cyan) !important;
+  border-top: 1px solid rgba(0,255,249,.3) !important;
   font-family: var(--font-mono) !important;
+  color: var(--text-dim) !important;
 }
 
 #footer a,
@@ -409,91 +813,219 @@ footer a {
   color: var(--neon-cyan) !important;
 }
 
+/* Footer curly branding */
+#footer .copy,
+footer .copyright {
+  font-family: var(--font-accent) !important;
+  color: var(--text-dim) !important;
+  font-size: 0.9rem !important;
+}
+
 /* ═══════════════════════════════════════════════════════════════════
-   SCROLLBAR
-═══════════════════════════════════════════════════════════════════ */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-pure);
-}
-
+ *  SCROLLBAR
+ ═ *══════════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-pure); }
 ::-webkit-scrollbar-thumb {
-  background: var(--neon-cyan);
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-pink));
   box-shadow: var(--glow-cyan);
+  border-radius: 2px;
 }
+::-webkit-scrollbar-corner { background: var(--bg-pure); }
 
 /* ═══════════════════════════════════════════════════════════════════
-   SELECTION
-═══════════════════════════════════════════════════════════════════ */
+ *  SELECTION
+ ═ *══════════════════════════════════════════════════════════════════ */
 ::selection {
   background: var(--neon-cyan) !important;
   color: var(--bg-pure) !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   REMOVE ALL MAL DEFAULT COLORS
-═══════════════════════════════════════════════════════════════════ */
-a {
-  color: var(--text-main) !important;
+ *  NEON FLICKER — applied selectively
+ ═ *══════════════════════════════════════════════════════════════════ */
+.neon-flicker,
+.score {
+  animation: neonFlicker 8s infinite !important;
 }
 
-a:hover {
-  color: var(--neon-cyan) !important;
-}
-
-/* Remove blue/green links */
-a[style*="blue"],
-a[style*="green"],
-a[style*="#2E51A2"],
-a[style*="#2b06ac"],
-a[style*="#586dd4"] {
-  color: var(--text-main) !important;
-}
-
-/* Buttons */
-button,
-input[type="submit"],
-input[type="button"] {
-  background: var(--bg-surface) !important;
+/* ═══════════════════════════════════════════════════════════════════
+ *  TOOLTIP
+ ═ *══════════════════════════════════════════════════════════════════ */
+.tooltip,
+[role="tooltip"],
+.list-item-detail {
+  background: var(--bg-elevated) !important;
   border: 1px solid var(--neon-cyan) !important;
-  color: var(--neon-cyan) !important;
-  font-family: var(--font-body) !important;
-}
-
-button:hover,
-input[type="submit"]:hover {
-  background: rgba(0, 255, 249, 0.1) !important;
   box-shadow: var(--glow-cyan) !important;
+  color: var(--text-main) !important;
+  font-family: var(--font-body) !important;
+  border-radius: 2px !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   GLITCH EFFECT ON HEADER
-═══════════════════════════════════════════════════════════════════ */
-.header-title h1 {
-  position: relative;
-  animation: glitchHeader 5s infinite;
+ *  ██████╗ ███████╗███████╗██████╗  ██████╗ ███╗   ██╗███████╗
+ *  ██╔══██╗██╔════╝██╔════╝██╔══██╗██╔═══██╗████╗  ██║██╔════╝
+ *  ██████╔╝█████╗  ███████╗██████╔╝██║   ██║██╔██╗ ██║███████╗
+ *  ██╔══██╗██╔══╝  ╚════██║██╔═══╝ ██║   ██║██║╚██╗██║╚════██║
+ *  ██║  ██║███████╗███████║██║     ╚██████╔╝██║ ╚████║███████║
+ *  ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+ ═ *══════════════════════════════════════════════════════════════════ */
+
+/* ─── Tablet ─────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .header-title h1 {
+    font-size: 1.6rem !important;
+    letter-spacing: 2px !important;
+  }
+
+  .list-block,
+  #list-block {
+  padding: 10px !important;
+  }
+
+  td, .td1, .td2, .td3, .td4 {
+    padding: 8px 6px !important;
+    font-size: 0.88rem !important;
+  }
+
+  .list-status-title .text,
+  .category-title .text {
+    font-size: 1.1rem !important;
+  }
 }
 
-@keyframes glitchHeader {
-  0%, 95%, 100% { transform: none; opacity: 1; }
-  96% { transform: translateX(-3px); }
-  97% { transform: translateX(3px); filter: hue-rotate(90deg); }
-  98% { transform: translateX(-2px); }
-  99% { transform: translateX(2px); filter: hue-rotate(-90deg); }
-}
-
-/* ═══════════════════════════════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════════════════════════════ */
+/* ─── Mobile ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .header-title h1 {
-    font-size: 1.5rem !important;
+    font-size: 1.25rem !important;
+    letter-spacing: 1px !important;
   }
-  
-  .list-block {
-    padding: 8px !important;
+
+  .status-menu,
+  .status-menu-container,
+  #status-menu {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  padding: 6px !important;
   }
+
+  .status-menu a,
+  .status-button {
+    font-size: 0.72rem !important;
+    padding: 4px 8px !important;
+  }
+
+  /* Collapse certain columns on mobile */
+  .header-title td.tags,
+  .header-title td.type,
+  .header-title td.priority,
+  .header-title td.storage,
+  .header-title td.rewatching,
+  td.tags,
+  td.priority,
+  td.storage,
+  td.rewatching {
+    display: none !important;
+  }
+
+  td, .td1, .td2, .td3, .td4 {
+    padding: 7px 5px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .td1 a,
+  td.title a {
+    font-size: 0.85rem !important;
+  }
+
+  .list-block,
+  #list-block {
+  padding: 4px !important;
+  margin: 0 !important;
+  }
+
+  .list-status-title .text,
+  .category-title .text {
+    font-size: 1rem !important;
+  }
+
+  /* Tighten rain on mobile for performance */
+  body::before,
+  body::after {
+    animation-duration: 0.5s !important;
+    opacity: 0.7 !important;
+  }
+}
+
+/* ─── Small phone ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .header-title h1 {
+    font-size: 1rem !important;
+    letter-spacing: 0 !important;
+  }
+
+  .header-title td.volumes,
+  .header-title td.episodes,
+  td.volumes,
+  td.episodes {
+    display: none !important;
+  }
+
+  td, .td1 {
+    font-size: 0.78rem !important;
+    padding: 6px 4px !important;
+  }
+
+  /* Reduce animation intensity on small screens */
+  @keyframes rainLayer1 {
+    100% { transform: translateY(20px) translateX(-5px); }
+  }
+
+  html::before {
+    opacity: 0.2 !important;
+  }
+}
+
+/* ─── Prefer reduced motion ──────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+ *  EXTRAS — Decorative touches
+ ═ *══════════════════════════════════════════════════════════════════ */
+
+/* Corner clip on list block */
+.list-block,
+#list-block {
+clip-path: polygon(
+  0 0,
+  calc(100% - 12px) 0,
+                   100% 12px,
+                   100% 100%,
+                   12px 100%,
+                   0 calc(100% - 12px)
+) !important;
+}
+
+/* Neon highlight rule between sections */
+.list-status-title + table,
+.category-title + table {
+  border-top: 1px solid rgba(0,255,249,.18) !important;
+}
+
+/* Cursor */
+* {
+  cursor: crosshair !important;
+}
+
+a, button, input, select, textarea, label {
+  cursor: pointer !important;
 }
