@@ -1,0 +1,409 @@
+@import "https://fonts.googleapis.com/css?family=Open+Sans:400,700,800";
+
+/* ============================================
+ *  BASE THEME
+ *  ============================================ */
+
+body {
+  background: #dfd1e0 repeat-x center/cover fixed
+  url(https://i.ibb.co.com/svq3nn0Y/20250225-012451.gif) !important;
+  font: 11px Open Sans;
+  color: #ccc;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.header .header-title, .header .header-menu, .header .header-info, #header-menu-button,
+i.fa, [data-owner=""] .list-menu-float, .icon-menu:not(.profile), .cover-block, #cover-image-container,
+.status-menu-container .status-menu .status-button::after, .status-menu-container .search-container,
+.list-unit .list-status-title .stats,
+.icon-watch.ml4, .more,
+.list-table .list-table-data .tags .edit {
+  display: none;
+}
+
+.header {
+  position: fixed; width: 300px; height: 480px;
+  left: calc(50% + 250px); top: 100px; z-index: 1;
+  pointer-events: none;
+}
+.header a { pointer-events: auto; }
+.header:before {
+  content: url(https://i.ibb.co.com/3GhNRyk/image-47.jpg);
+  display: block; text-align: right;
+}
+.header .header-menu.other {
+  display: block; top: unset; bottom: 98px; left: -10px;
+}
+.header .header-menu .btn-menu { font-size: 0; text-align: center; }
+.header a.username {
+  background: center/150px;
+  font: 800 20px Open Sans; color: rgba(255,255,255,.7);
+  letter-spacing: 2px; padding: 5px 0;
+}
+.list-menu-float {
+  top: 450px; left: calc(50% + 250px); width: 300px; border: 0; z-index: 1;
+}
+.icon-menu.profile {
+  background: none !important; display: inline-block; width: auto; height: auto;
+}
+.icon-menu.profile:after {
+  content: attr(href);
+  background: center/120px;
+  font: 800 20px Open Sans; color: rgba(255,255,255,.7);
+  letter-spacing: 2px; padding: 5px;
+  display: inline-block; white-space: nowrap; text-indent: -443px; overflow: hidden;
+}
+.icon-menu.profile:hover:after, .header a:hover,
+.list-table .list-table-data a:not(.edit-disabled):hover,
+.status-menu-container .status-menu .status-button:not(.on):hover,
+#recaptcha-terms a:hover {
+color: white !important; text-decoration: none;
+}
+.list-container {
+  width: 1000px; top: 100px; background: none !important; border: 0;
+}
+#status-menu {
+position: fixed; width: auto; height: 0;
+top: 495px; left: calc(50% + 300px); border: 0;
+}
+#status-menu .status-menu { display: flex; flex-flow: column; align-items: center; }
+.status-menu-container .status-menu .status-button {
+  order: 2; width: 170px; background: rgba(255,255,255,.2); padding: 2px 0;
+  font: bold 11px Open Sans; color: rgba(67,72,104,.7); transition: all .2s ease-in-out;
+}
+.status-menu-container .status-menu .status-button.on {
+  order: 1; background: rgba(92,99,145,.2); color: #e8e8e8 !important;
+  padding: 10px; border-radius: 20px; border: 1px solid #e8e8e8;
+}
+.status-menu-container .status-menu .status-button:not(.on) {
+  margin-top: -16px; opacity: 0;
+}
+.status-menu-container .status-menu:hover .status-button:not(.on),
+.list-block, .status-menu-container.fixed + div.list-block {
+  margin: 0; opacity: 1;
+}
+.list-unit { width: 600px; margin-left: 60px; }
+.list-unit .list-status-title {
+  background: none; width: 600px; position: absolute; top: -12px;
+}
+.list-unit .list-status-title .text {
+  font: 800 25px Open Sans; color: rgba(255,255,255,.6);
+  letter-spacing: 3px; text-align: left;
+}
+.list-table { border: 0; border-collapse: separate; border-spacing: 0 2px; }
+.list-table > tbody:nth-of-type(2n+1):first-child,
+.list-table .list-table-header .header-title {
+  background: none; border: 0; height: 18px;
+}
+.list-table .list-table-header .header-title .sort-icon { color: #ccc; }
+.list-item, .list-table > tbody:nth-of-type(2n+1) { background: rgba(0,0,0,.2); }
+.list-table .list-table-header .header-title.title { visibility: hidden; }
+.list-table .list-table-header .header-title .link.sort,
+.list-table .list-table-data .data a,
+.list-table .list-table-data a.edit-disabled { color: #ccc !important; }
+.list-table .list-table-data .data { height: 30px; border: 0; }
+.list-table .list-table-data:hover { background: rgba(0,0,0,.1); }
+.list-table .list-table-data .data.status {
+  background: none !important; font: 13px FontAwesome; padding: 0 5px;
+}
+.data.status.watching:before       { content: '\f005'; }
+.data.status.completed:before      { content: '\f058'; }
+.data.status.onhold:before         { content: '\f06a'; }
+.data.status.dropped:before        { content: '\f05e'; }
+.data.status.plantowatch:before    { content: '\f017'; }
+
+.list-table .list-table-header .header-title.image,
+.list-table .list-table-data .data.image { width: 0; padding: 0; }
+.list-table .list-table-header .header-title.image .link { display: none; }
+.list-table .list-table-data .data.image .link {
+  position: absolute; left: -100px; z-index: -1;
+  width: 120px; height: 180px; margin-top: -90px;
+  border-radius: 7px; overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0,0,0,.4);
+  opacity: 0; transition: all .5s ease-in-out;
+}
+.list-table .list-table-data:hover .data.image .link { opacity: .8; }
+.list-table .list-table-data .data.image .image {
+  width: 100%; height: 100%; border: none; object-fit: cover;
+}
+.list-table .list-table-header .header-title.number {
+  position: absolute; visibility: hidden;
+}
+.list-table .list-table-data .data.number {
+  position: absolute; left: 12px; margin-top: 3px;
+  font: 800 19px Open Sans; letter-spacing: 0;
+  color: rgba(0,0,0,.3); text-align: right; width: 40px; z-index: -2;
+}
+.data.number ~ .data.title .link:before { left: -100px; }
+.list-table .list-table-data .data.title { padding-left: 0; }
+.list-table .list-table-data .data.title .link {
+  font-size: 1em; line-height: 1em; color: white !important;
+  display: inline-block; max-width: 270px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.list-table .list-table-data .data.title .notes .text { color: #ccc; }
+.content-status {
+  display: inline-block; background: rgba(0,0,0,.2);
+  padding: 1px 4px 2px 4px; border-radius: 10px;
+  position: relative; top: -1px;
+}
+.list-table .list-table-data .data.title .add-edit-more {
+  float: none; display: inline; font-size: 0; line-height: 0; opacity: 0;
+  position: relative; top: -2px; left: 3px;
+}
+.list-table-data:hover .data.title .add-edit-more { opacity: 1; }
+.add, .edit, .data.tags { font-size: 8px; line-height: 1em; }
+#footer-block { background: none; position: relative; top: 90px; }
+#copyright, #recaptcha-terms, #recaptcha-terms a {
+font: 8px Open Sans; color: rgba(0,0,0,.6);
+}
+
+/* Streaming popup */
+[class^="icon-watch"] .malicon { color: #ccc !important; }
+.mal-modal .mal-modal-dialog .mal-modal-content {
+  background-color: #8783b366 !important;
+}
+.mal-modal .mal-modal-dialog .mal-modal-content a,
+.mal-modal .mal-modal-dialog .mal-modal-content button.btn-close { color: white !important; }
+.mal-modal .mal-modal-dialog .mal-modal-content a:hover {
+  color: #ccc !important; background-color: unset !important;
+}
+.mal-modal .mal-modal-dialog .mal-modal-content .mal-modal-header {
+  color: #ccc; border-color: transparent;
+}
+.mal-modal .mal-modal-dialog .mal-modal-content .mal-modal-header .row.reverse {
+  text-align: left;
+}
+
+/* ============================================
+ *  ⚡ CYBERPUNK ENHANCEMENTS — FIXED & ENHANCED
+ *  ============================================ */
+
+/* ------------------------------------------
+ *  🖥️  CRT SCANLINES — via body::after
+ *  Covers the entire viewport persistently.
+ *  ------------------------------------------ */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+
+  /* Alternating opaque/transparent horizontal bands = scanlines */
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.18) 3px,
+                                        rgba(0, 0, 0, 0.18) 4px
+  );
+
+  /* Subtle vertical drift to simulate screen phosphor refresh */
+  animation: scanline-drift 8s linear infinite;
+}
+
+@keyframes scanline-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 200px; }
+}
+
+/* ------------------------------------------
+ *  🌧️  DIGITAL RAIN — via body::before
+ *  Uses a repeating gradient that scrolls
+ *  downward to simulate rain streaks.
+ *  No extra HTML element needed.
+ *  ------------------------------------------ */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+
+  background-image:
+  /* Wide sparse streaks */
+  repeating-linear-gradient(
+    175deg,
+    transparent 0px,
+    transparent 18px,
+    rgba(180, 160, 220, 0.04) 18px,
+                            rgba(180, 160, 220, 0.04) 20px
+  ),
+  /* Tight fast streaks */
+  repeating-linear-gradient(
+    180deg,
+    transparent 0px,
+    transparent 6px,
+    rgba(255, 255, 255, 0.025) 6px,
+                            rgba(255, 255, 255, 0.025) 7px
+  );
+
+  background-size: 100% 120px, 3px 100%;
+  animation: rain-fall 0.45s linear infinite;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+
+@keyframes rain-fall {
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 0 120px, 0 100px; }
+}
+
+/* ------------------------------------------
+ *  ⚡ LIGHTNING FLASH — periodic full-screen
+ *  Uses a keyframe on the html element so
+ *  it doesn't conflict with body pseudos.
+ *  ------------------------------------------ */
+html {
+  animation: lightning-strike 7s ease-in-out infinite;
+}
+
+@keyframes lightning-strike {
+  /* Long quiet period */
+  0%,  88% { filter: none; }
+
+  /* First flash */
+  89%       { filter: brightness(1.8) contrast(1.2) saturate(0.4) hue-rotate(200deg); }
+  90%       { filter: none; }
+
+  /* Brief dark between flashes */
+  91%       { filter: brightness(0.7); }
+
+  /* Second stronger flash */
+  92%       { filter: brightness(2.5) contrast(1.4) saturate(0.2) hue-rotate(220deg); }
+  93%       { filter: none; }
+
+  /* Subtle afterglow */
+  94%       { filter: brightness(1.1) hue-rotate(210deg); }
+  95%, 100% { filter: none; }
+}
+
+/* ------------------------------------------
+ *  ✨ GLITCH — applied to MAL title elements
+ *  Fix: use clip-path instead of deprecated
+ *  clip: rect(). Targets actual MAL selectors.
+ *  ------------------------------------------ */
+
+/* The title text in the status section headers */
+.list-unit .list-status-title .text,
+/* The username link in the fixed header */
+.header a.username {
+  position: relative;
+  animation: glitch-skew 3s infinite linear alternate-reverse;
+}
+
+.list-unit .list-status-title .text::before,
+.list-unit .list-status-title .text::after,
+.header a.username::before,
+.header a.username::after {
+  content: attr(data-text);   /* fallback — works if MAL sets data-text */
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+}
+
+/* Cyan ghost */
+.list-unit .list-status-title .text::before,
+.header a.username::before {
+  left: 2px;
+  color: #00ffea;
+  text-shadow: -2px 0 #00ffea;
+  animation: glitch-clip-1 2.5s infinite steps(1);
+}
+
+/* Magenta ghost */
+.list-unit .list-status-title .text::after,
+.header a.username::after {
+  left: -2px;
+  color: #ff00bf;
+  text-shadow: 2px 0 #ff00bf;
+  animation: glitch-clip-2 3.2s infinite steps(1);
+}
+
+/* ✅ clip-path replaces deprecated clip: rect() */
+@keyframes glitch-clip-1 {
+  0%   { clip-path: inset(15% 0 60% 0); }
+  20%  { clip-path: inset(70% 0 5%  0); }
+  40%  { clip-path: inset(40% 0 40% 0); }
+  60%  { clip-path: inset(5%  0 80% 0); }
+  80%  { clip-path: inset(55% 0 20% 0); }
+  100% { clip-path: inset(30% 0 50% 0); }
+}
+
+@keyframes glitch-clip-2 {
+  0%   { clip-path: inset(60% 0 10% 0); }
+  25%  { clip-path: inset(10% 0 65% 0); }
+  50%  { clip-path: inset(80% 0 2%  0); }
+  75%  { clip-path: inset(20% 0 45% 0); }
+  100% { clip-path: inset(45% 0 30% 0); }
+}
+
+@keyframes glitch-skew {
+  0%   { transform: skew(0deg); }
+  30%  { transform: skew(0deg); }
+  31%  { transform: skew(3deg); }
+  32%  { transform: skew(-2deg); }
+  33%  { transform: skew(0deg); }
+  80%  { transform: skew(0deg); }
+  81%  { transform: skew(-3deg); }
+  82%  { transform: skew(1deg); }
+  83%  { transform: skew(0deg); }
+  100% { transform: skew(0deg); }
+}
+
+/* ------------------------------------------
+ *  🔲 ROW HOVER — neon border pulse
+ *  ------------------------------------------ */
+.list-table .list-table-data:hover {
+  background: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: inset 0 0 0 1px rgba(180, 0, 255, 0.3),
+  0 0 10px rgba(180, 0, 255, 0.15);
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* ------------------------------------------
+ *  🔗 LINK HOVER — neon glow
+ *  (replaces your previous a:hover rule)
+ *  ------------------------------------------ */
+.list-table .list-table-data a:not(.edit-disabled):hover,
+.header a:hover,
+.icon-menu.profile:hover:after {
+  color: #fff !important;
+  text-shadow:
+  0 0 4px #fff,
+  0 0 10px #bf00ff,
+  0 0 20px #ff00bf,
+  0 0 40px #bf00ff !important;
+  text-decoration: none;
+}
+
+/* ------------------------------------------
+ *  🟣 STATUS BUTTON HOVER
+ *  ------------------------------------------ */
+.status-menu-container .status-menu .status-button:not(.on):hover {
+  text-shadow: 0 0 8px violet, 0 0 16px #ff00bf;
+  color: #fff !important;
+}
+
+/* ------------------------------------------
+ *  📺 VIGNETTE — darkened corners for CRT feel
+ *  Uses outline (no extra element needed)
+ *  ------------------------------------------ */
+.list-container::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9996;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
