@@ -6,7 +6,7 @@
 
 body {
   background: #dfd1e0 repeat-x center/cover fixed
-  url(https://i.ibb.co.com/svq3nn0Y/20250225-012451.gif) !important;
+  url(https://i.ibb.co.com/3GhNRyk/image-47.jpg) !important;
   font: 11px Open Sans;
   color: #ccc;
   letter-spacing: 1px;
@@ -29,7 +29,7 @@ i.fa, [data-owner=""] .list-menu-float, .icon-menu:not(.profile), .cover-block, 
 }
 .header a { pointer-events: auto; }
 .header:before {
-  content: url(https://i.ibb.co.com/3GhNRyk/image-47.jpg);
+  content: url(https://i.ibb.co.com/mCp4N29Y/Berserk-Logo.png);
   display: block; text-align: right;
 }
 .header .header-menu.other {
