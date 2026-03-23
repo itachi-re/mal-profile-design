@@ -13,7 +13,8 @@ body {
   text-transform: uppercase;
 }
 
-.header .header-title, .header .header-menu, .header .header-info, #header-menu-button,
+/* hide only what should truly be invisible */
+.header .header-title, .header .header-info, #header-menu-button,
 i.fa, [data-owner=""] .list-menu-float, .icon-menu:not(.profile), .cover-block, #cover-image-container,
 .status-menu-container .status-menu .status-button::after, .status-menu-container .search-container,
 .list-unit .list-status-title .stats,
@@ -29,46 +30,58 @@ i.fa, [data-owner=""] .list-menu-float, .icon-menu:not(.profile), .cover-block, 
 }
 .header a { pointer-events: auto; }
 .header:before {
-  content: url(https://i.imgur.com/cspd8F6.png);
+  content: url(https://i.imgur.com/cspd8F6.jpg);
   display: block; text-align: right;
 }
+
+/* header-menu: hidden by default, only .other variant is shown */
+.header .header-menu { display: none; }
 .header .header-menu.other {
   display: block; top: unset; bottom: 98px; left: -10px;
 }
-.header .header-menu .btn-menu { font-size: 0; text-align: center; }
+
+/* btn-menu: never zero out font-size — let children be readable */
+.header .header-menu .btn-menu {
+  text-align: center;
+  font: 700 10px Gelasio;
+}
 .header .header-menu .btn-menu a,
+.header .header-menu .btn-menu li,
 .header .header-menu .btn-menu span {
-  font: 700 10px Gelasio !important;
-  font-size: 10px !important;
   color: #c8a882 !important;
+  font: 700 10px Gelasio !important;
   letter-spacing: 1px;
   text-transform: uppercase;
   display: block;
   padding: 4px 0;
+  text-shadow: 0 0 6px rgba(200,168,130,.35);
 }
+.header .header-menu .btn-menu a:hover {
+  color: #f5e6d0 !important;
+  text-shadow: 0 0 8px #bf8040, 0 0 16px #c8a882 !important;
+  text-decoration: none;
+}
+
 .header a.username {
   background: center/150px;
   font: 800 20px Gelasio; color: rgba(210,175,130,.9);
   letter-spacing: 2px; padding: 5px 0;
 }
+
+/* float menu (appears below header) */
 .list-menu-float {
   top: 450px; left: calc(50% + 250px); width: 300px; border: 0; z-index: 1;
 }
-
-/* ── dropdown / float menu text ── */
 .list-menu-float a,
 .list-menu-float li,
-.list-menu-float span,
-.header .header-menu a,
-.header .header-menu li {
+.list-menu-float span {
   color: #c8a882 !important;
   font: 700 10px Gelasio !important;
   letter-spacing: 1px;
   text-transform: uppercase;
-  text-shadow: 0 0 6px rgba(200,168,130,.4);
+  text-shadow: 0 0 6px rgba(200,168,130,.35);
 }
-.list-menu-float a:hover,
-.header .header-menu a:hover {
+.list-menu-float a:hover {
   color: #f5e6d0 !important;
   text-shadow: 0 0 8px #bf8040, 0 0 16px #c8a882 !important;
   text-decoration: none;
